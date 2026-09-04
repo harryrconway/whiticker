@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Whiticker</title>
+	<meta name="description" content="Whiticker — architecture, lifestyle &amp; people, travel &amp; hotels. Based on the Gold Coast, working throughout Australia and internationally.">
+
+	<!-- Flip no-js → js before first paint, so the hidden-until-revealed
+	     states only apply when JS is actually there to reveal them -->
+	<script>document.documentElement.className = 'js';</script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap">
+
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ==========================================================================
+	 HEADER — name + hamburger, fixed top right. Slides in from the right and
+	 holds alone for a beat before the work fades in behind it.
+	 ========================================================================== -->
+<header class="site-header">
+	<a class="brand" href="#top" aria-label="Whiticker — back to top">Whiticker</a>
+
+	<button
+		class="nav-toggle"
+		type="button"
+		aria-label="Open menu"
+		aria-expanded="false"
+		aria-controls="site-nav">
+		<span class="nav-toggle__box">
+			<i class="nav-toggle__bar"></i>
+			<i class="nav-toggle__bar"></i>
+		</span>
+	</button>
+</header>
+
+<!-- ==========================================================================
+	 NAV OVERLAY — blurred fullscreen, perfectly centred. Deliberately
+	 unnumbered: the chapter numerals live in the page, not the menu.
+	 ========================================================================== -->
+<nav id="site-nav" class="nav-overlay" aria-hidden="true">
+	<div class="nav-overlay__inner">
+		<!-- Nav order mirrors the page, so it matches the chapter numbering -->
+		<ul class="nav-list">
+			<li style="--i:0"><a href="#behind-the-lens">About</a></li>
+			<li style="--i:1"><a href="#architecture">Architecture</a></li>
+			<li style="--i:2"><a href="#lifestyle">Lifestyle &amp; People</a></li>
+			<li style="--i:3"><a href="#travel">Travel / Hotels</a></li>
+			<li style="--i:4"><a href="#contact">Contact</a></li>
+		</ul>
+
+		<a
+			class="nav-ig"
+			href="https://www.instagram.com/"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Instagram">
+			<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+				<rect x="2.5" y="2.5" width="19" height="19" rx="5.25"
+					fill="none" stroke="currentColor" stroke-width="1.3"/>
+				<circle cx="12" cy="12" r="4.6"
+					fill="none" stroke="currentColor" stroke-width="1.3"/>
+				<circle cx="17.6" cy="6.4" r="1.15" fill="currentColor"/>
+			</svg>
+		</a>
+	</div>
+</nav>
+
+<!-- ==========================================================================
+	 MAIN
+	 hero → 01 behind the lens → 02 architecture + credits → 03 lifestyle
+	      → 04 travel → 05 contact
+
+	 NOTE: every project name, client, architect and developer below is
+	 INVENTED PLACEHOLDER COPY. Credits assert real commercial relationships —
+	 replace all of it with genuine jobs before this goes anywhere public.
+	 ========================================================================== -->
+<main id="top">
+
+	<!-- Hero — one inset full-viewport image, wordmark centred over it.
+	     The page waits for this photograph to decode before fading in, so it
+	     is never seen arriving. .hero__title positions; .hero__title-in
+	     carries the scroll fade. -->
+	<section class="hero">
+		<figure class="hero__media">
+			<img src="images/travel.jpg"
+				alt="Mountain ridges receding into golden haze, a lone figure standing on a rock outcrop"
+				loading="eager" fetchpriority="high" decoding="async">
+		</figure>
+
+		<div class="hero__title">
+			<div class="hero__title-in">
+				<h1 class="hero__mark">Whiticker</h1>
+				<p class="hero__tagline"><span>Architecture —</span> <span>Lifestyle &amp; People —</span> <span>Travel / Hotels</span></p>
+				<p class="hero__positioning">Based on the Gold Coast, working throughout Australia and internationally.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── 01 ──────────────────────────────────────────────────────────── -->
+	<h2 class="chapter" id="behind-the-lens">
+		<span class="chapter__num">01</span>
+		<span class="chapter__name">Behind the Lens</span>
+	</h2>
+
+	<section class="about">
+		<div class="about__body">
+			<p>Photography is mostly waiting. For the light to come round, for the room to settle, for the moment a building stops performing and simply is. The pictures that last are rarely the ones taken first.</p>
+			<p>Work spans architecture, interiors, hospitality and the people who occupy them — commissioned by architects, developers, hotel groups and the studios that build for them.</p>
+		</div>
+	</section>
+
+	<!-- ─── 02 ──────────────────────────────────────────────────────────── -->
+	<h2 class="chapter" id="architecture">
+		<span class="chapter__num">02</span>
+		<span class="chapter__name">Architecture</span>
+	</h2>
+
+	<section class="row">
+		<figure class="frame">
+			<div class="frame__media" style="--pos:50% 26%">
+				<img src="images/architecture.jpg"
+					alt="Sweeping white concrete wall curving against a clear sky"
+					loading="lazy" decoding="async">
+				<p class="frame__note">Light held against a curve</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">One Sydney Harbour</span><span class="frame__meta">Sydney / 2026</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Harbour House Developments</dd></div>
+					<div class="frame__spec"><dt>Architect</dt><dd>Studio Farrow</dd></div>
+					<div class="frame__spec"><dt>Developer</dt><dd>Meridian Property Group</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+		<figure class="frame">
+			<div class="frame__media" style="--pos:50% 92%">
+				<img src="images/architecture.jpg"
+					alt="A figure in black walking beside a shallow reflecting pool at the base of a white wall"
+					loading="lazy" decoding="async">
+				<p class="frame__note">The smallest figure in the frame</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">One Sydney Harbour</span><span class="frame__meta">Sydney / 2026</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Harbour House Developments</dd></div>
+					<div class="frame__spec"><dt>Architect</dt><dd>Studio Farrow</dd></div>
+					<div class="frame__spec"><dt>Developer</dt><dd>Meridian Property Group</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+	</section>
+
+
+	<!-- ─── 03 ──────────────────────────────────────────────────────────── -->
+	<h2 class="chapter" id="lifestyle">
+		<span class="chapter__num">03</span>
+		<span class="chapter__name">Lifestyle &amp; People</span>
+	</h2>
+
+	<section class="row">
+		<figure class="frame">
+			<div class="frame__media" style="--pos:30% 58%">
+				<img src="images/lifestyle.jpg"
+					alt="Silver sports car parked side-on across a paved forecourt"
+					loading="lazy" decoding="async">
+				<p class="frame__note">Kept for the road that deserves it</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Private Collection</span><span class="frame__meta">Gold Coast / 2025</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Marque Automotive</dd></div>
+					<div class="frame__spec"><dt>Agency</dt><dd>Field &amp; Co</dd></div>
+					<div class="frame__spec"><dt>Location</dt><dd>Gold Coast, QLD</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+		<figure class="frame">
+			<div class="frame__media" style="--pos:76% 55%">
+				<img src="images/lifestyle.jpg"
+					alt="Sports car and a white four-wheel drive outside a modern white house"
+					loading="lazy" decoding="async">
+				<p class="frame__note">Parked where the afternoon lands</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Hillside Residence</span><span class="frame__meta">Byron Bay / 2025</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Aster Developments</dd></div>
+					<div class="frame__spec"><dt>Architect</dt><dd>Studio Farrow</dd></div>
+					<div class="frame__spec"><dt>Location</dt><dd>Byron Bay, NSW</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+	</section>
+
+	<!-- ─── 04 ──────────────────────────────────────────────────────────── -->
+	<h2 class="chapter" id="travel">
+		<span class="chapter__num">04</span>
+		<span class="chapter__name">Travel / Hotels</span>
+	</h2>
+
+	<section class="row">
+		<figure class="frame">
+			<div class="frame__media" style="--pos:67% 64%">
+				<img src="images/travel.jpg"
+					alt="A walker standing alone on a rock outcrop above forested ridges"
+					loading="lazy" decoding="async">
+				<p class="frame__note">The long way round, taken slowly</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Alpine Traverse</span><span class="frame__meta">Victoria / 2025</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Northbound Travel</dd></div>
+					<div class="frame__spec"><dt>Agency</dt><dd>Field &amp; Co</dd></div>
+					<div class="frame__spec"><dt>Location</dt><dd>Victorian Alps</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+		<figure class="frame">
+			<div class="frame__media" style="--pos:22% 50%">
+				<img src="images/travel.jpg"
+					alt="Rock spires rising from a green ridge in late afternoon light"
+					loading="lazy" decoding="async">
+				<p class="frame__note">Stone that got there first</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Hinterland Lodge</span><span class="frame__meta">Gold Coast / 2024</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Hinterland Group</dd></div>
+					<div class="frame__spec"><dt>Architect</dt><dd>Marlow Architects</dd></div>
+					<div class="frame__spec"><dt>Location</dt><dd>Gold Coast, QLD</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+	</section>
+
+	<!-- Chapter 04 continues — no marker, these belong to Travel / Hotels -->
+	<section class="row">
+		<figure class="frame">
+			<div class="frame__media" style="--pos:50% 20%">
+				<img src="images/travel.jpg"
+					alt="Layered mountain ridges fading into haze"
+					loading="lazy" decoding="async">
+				<p class="frame__note">Ridge after ridge, going quiet</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Highland Crossing</span><span class="frame__meta">Tasmania / 2026</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Southern Wilds</dd></div>
+					<div class="frame__spec"><dt>Agency</dt><dd>Meridian Creative</dd></div>
+					<div class="frame__spec"><dt>Location</dt><dd>Central Highlands, TAS</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+		<figure class="frame">
+			<div class="frame__media" style="--pos:90% 70%">
+				<img src="images/travel.jpg"
+					alt="Weathered rock formations along a high mountain ridge"
+					loading="lazy" decoding="async">
+				<p class="frame__note">Somewhere the season turns first</p>
+			</div>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">The Escarpment</span><span class="frame__meta">New England / 2026</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Escarpment Lodges</dd></div>
+					<div class="frame__spec"><dt>Architect</dt><dd>Marlow Architects</dd></div>
+					<div class="frame__spec"><dt>Location</dt><dd>New England, NSW</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+	</section>
+
+	<!-- ─── 05 ─────────────────────────────────────────────────────────────
+	     Full-viewport close. Contact details below are PLACEHOLDER — replace
+	     with the real address, phone and handle before publishing.
+	     ──────────────────────────────────────────────────────────────────── -->
+	<section class="contact" id="contact">
+		<h2 class="chapter chapter--flush">
+			<span class="chapter__num">05</span>
+			<span class="chapter__name">Contact</span>
+		</h2>
+
+		<div class="contact__inner">
+			<a class="contact__email" href="mailto:hello@whiticker.com.au">hello@whiticker.com.au</a>
+
+			<dl class="contact__details">
+				<div class="contact__item">
+					<dt>Telephone</dt>
+					<dd><a href="tel:+61400000000">+61 400 000 000</a></dd>
+				</div>
+				<div class="contact__item">
+					<dt>Instagram</dt>
+					<dd><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">@whiticker</a></dd>
+				</div>
+				<div class="contact__item">
+					<dt>LinkedIn</dt>
+					<dd><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">@whiticker</a></dd>
+				</div>
+			</dl>
+		</div>
+
+		<!-- Sits in its own bottom grid row, not inside the centred block —
+		     otherwise its top margin strands empty space beneath it -->
+		<p class="contact__colophon">© 2026 Whiticker — Based on the Gold Coast, working throughout Australia and internationally.</p>
+	</section>
+
+</main>
+
+<script src="main.js" defer></script>
+</body>
+</html>
