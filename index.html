@@ -14,6 +14,10 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap">
 
+	<!-- Start the hero fetch during head parsing: the page fade is gated on
+	     this image decoding, so it is the one thing between load and fade -->
+	<link rel="preload" as="image" href="images/travel.webp" type="image/webp" fetchpriority="high">
+
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -87,7 +91,7 @@
 	     carries the scroll fade. -->
 	<section class="hero">
 		<figure class="hero__media">
-			<img src="images/travel.jpg"
+			<img src="images/travel.webp"
 				alt="Mountain ridges receding into golden haze, a lone figure standing on a rock outcrop"
 				loading="eager" fetchpriority="high" decoding="async">
 		</figure>
@@ -123,7 +127,7 @@
 	<section class="row">
 		<figure class="frame">
 			<div class="frame__media" style="--pos:50% 26%">
-				<img src="images/architecture.jpg"
+				<img src="images/architecture.webp"
 					alt="Sweeping white concrete wall curving against a clear sky"
 					loading="lazy" decoding="async">
 				<p class="frame__note">Light held against a curve</p>
@@ -139,7 +143,7 @@
 		</figure>
 		<figure class="frame">
 			<div class="frame__media" style="--pos:50% 92%">
-				<img src="images/architecture.jpg"
+				<img src="images/architecture.webp"
 					alt="A figure in black walking beside a shallow reflecting pool at the base of a white wall"
 					loading="lazy" decoding="async">
 				<p class="frame__note">The smallest figure in the frame</p>
@@ -165,7 +169,7 @@
 	<section class="row">
 		<figure class="frame">
 			<div class="frame__media" style="--pos:30% 58%">
-				<img src="images/lifestyle.jpg"
+				<img src="images/lifestyle.webp"
 					alt="Silver sports car parked side-on across a paved forecourt"
 					loading="lazy" decoding="async">
 				<p class="frame__note">Kept for the road that deserves it</p>
@@ -181,7 +185,7 @@
 		</figure>
 		<figure class="frame">
 			<div class="frame__media" style="--pos:76% 55%">
-				<img src="images/lifestyle.jpg"
+				<img src="images/lifestyle.webp"
 					alt="Sports car and a white four-wheel drive outside a modern white house"
 					loading="lazy" decoding="async">
 				<p class="frame__note">Parked where the afternoon lands</p>
@@ -206,7 +210,7 @@
 	<section class="row">
 		<figure class="frame">
 			<div class="frame__media" style="--pos:67% 64%">
-				<img src="images/travel.jpg"
+				<img src="images/travel.webp"
 					alt="A walker standing alone on a rock outcrop above forested ridges"
 					loading="lazy" decoding="async">
 				<p class="frame__note">The long way round, taken slowly</p>
@@ -222,7 +226,7 @@
 		</figure>
 		<figure class="frame">
 			<div class="frame__media" style="--pos:22% 50%">
-				<img src="images/travel.jpg"
+				<img src="images/travel.webp"
 					alt="Rock spires rising from a green ridge in late afternoon light"
 					loading="lazy" decoding="async">
 				<p class="frame__note">Stone that got there first</p>
@@ -242,7 +246,7 @@
 	<section class="row">
 		<figure class="frame">
 			<div class="frame__media" style="--pos:50% 20%">
-				<img src="images/travel.jpg"
+				<img src="images/travel.webp"
 					alt="Layered mountain ridges fading into haze"
 					loading="lazy" decoding="async">
 				<p class="frame__note">Ridge after ridge, going quiet</p>
@@ -258,7 +262,7 @@
 		</figure>
 		<figure class="frame">
 			<div class="frame__media" style="--pos:90% 70%">
-				<img src="images/travel.jpg"
+				<img src="images/travel.webp"
 					alt="Weathered rock formations along a high mountain ridge"
 					loading="lazy" decoding="async">
 				<p class="frame__note">Somewhere the season turns first</p>
