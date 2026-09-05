@@ -5,7 +5,8 @@
    02  INTRO
    03  NAV
    04  HANDOFF
-   05  INIT
+   05  REVEAL
+   06  INIT
    ========================================================================== */
 
 (function () {
@@ -44,6 +45,10 @@
 	function clamp(n) {
 		return n < 0 ? 0 : (n > 1 ? 1 : n);
 	}
+
+	var prefersReducedMotion = window.matchMedia
+		? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+		: false;
 
 
 	/* ======================================================================
@@ -148,7 +153,14 @@
 	   ====================================================================== */
 
 	function handoff() {
-		if (!el.hero) return;
+		// No hero to hand off from (the projects page). .brand is
+		// opacity: var(--brand-op, 0), so returning without setting it would
+		// leave the wordmark permanently invisible.
+		if (!el.hero) {
+			body.style.setProperty('--brand-op', 1);
+			body.classList.add('past-hero');   // restores pointer-events
+			return;
+		}
 
 		var heroHeight = el.hero.offsetHeight;
 		var ticking = false;
@@ -213,13 +225,51 @@
 
 
 	/* ======================================================================
-	   05  INIT
+	   05  REVEAL
+	   Fades plates up as they enter the viewport. Queries .plate, which only
+	   exists on the projects page — so this no-ops on the homepage, whose
+	   scroll reveal was deliberately removed and must stay gone.
+	   ====================================================================== */
+
+	function reveal() {
+		var plates = document.querySelectorAll('.plate');
+		if (!plates.length) return;
+
+		function showAll() {
+			Array.prototype.forEach.call(plates, function (n) {
+				n.classList.add('is-visible');
+			});
+		}
+
+		if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+			showAll();
+			return;
+		}
+
+		var observer = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				if (!entry.isIntersecting) return;
+				entry.target.classList.add('is-visible');
+				observer.unobserve(entry.target);   // reveal once
+			});
+		}, {
+			threshold: 0.15,
+			rootMargin: '0px 0px -8% 0px'
+		});
+
+		Array.prototype.forEach.call(plates, function (n) { observer.observe(n); });
+	}
+
+
+	/* ======================================================================
+	   06  INIT
 	   ====================================================================== */
 
 	function init() {
 		intro();
 		nav();
 		handoff();
+		reveal();
 	}
 
 	if (document.readyState === 'loading') {

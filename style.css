@@ -14,9 +14,10 @@
    08  ROWS & FRAMES
    09  BEHIND THE LENS
    10  CONTACT
-   11  PAGE FADE
-   12  RESPONSIVE
-   13  A11Y
+   11  PROJECTS
+   12  PAGE FADE
+   13  RESPONSIVE
+   14  A11Y
    ========================================================================== */
 
 
@@ -702,7 +703,97 @@ main {
 
 
 /* ==========================================================================
-   11  PAGE FADE
+   11  PROJECTS  (projects/index.html)
+   One repeating six-plate module per commission. Every project uses the same
+   markup; nth-child places each plate, so adding a project is adding six
+   <img> tags and nothing else.
+
+        [        1  span 12        ]  78vh
+        [   2  span 7 ][ 3 span 5 ]  56vh
+        [ 4 span 5 ][   5  span 7 ]  56vh
+        [        6  span 12        ]  78vh
+   ========================================================================== */
+
+.project {
+	padding-bottom: clamp(70px, 14vh, 170px);
+	/* Deep links from the homepage land here — without this the title sits
+	   flush against the viewport edge with no air above it */
+	scroll-margin-top: clamp(24px, 6vh, 64px);
+}
+
+.project__title {
+	padding: clamp(40px, 7vh, 90px) var(--inset) clamp(18px, 2.6vh, 34px);
+	font-size: var(--chapter-size);
+	font-weight: 400;
+	letter-spacing: var(--track-wide);
+	text-transform: uppercase;
+	line-height: 1;
+	color: var(--ink);
+}
+
+.project__grid {
+	display: grid;
+	/* minmax(0, …) is load-bearing: a bare 1fr carries a min-content floor,
+	   which lets a portrait photograph's intrinsic height blow out its track */
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: var(--inset);
+	padding: 0 var(--inset);
+}
+
+.plate {
+	position: relative;
+	overflow: hidden;
+	background: var(--bg-raise);
+}
+
+/* Absolutely positioned for the same reason as the homepage plates: the
+   photograph must never contribute its intrinsic size to track sizing */
+.plate img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: var(--pos, 50% 50%);
+	transition: opacity var(--dur) var(--ease);
+}
+
+.plate:nth-child(1),
+.plate:nth-child(6) { grid-column: span 12; height: 78vh; height: 78svh; }
+
+.plate:nth-child(2),
+.plate:nth-child(5) { grid-column: span 7;  height: 56vh; height: 56svh; }
+
+.plate:nth-child(3),
+.plate:nth-child(4) { grid-column: span 5;  height: 56vh; height: 56svh; }
+
+@media (hover: hover) and (pointer: fine) {
+	.plate:hover img { opacity: var(--hover-alpha); }
+}
+
+/* --- Scroll reveal, scoped to .plate ------------------------------------
+   The homepage's reveal was deliberately removed and must stay gone. .plate
+   exists only on this page, so these rules cannot reach index.html. */
+
+.js .plate {
+	opacity: 0;
+	transform: translateY(28px);
+}
+
+.plate {
+	transition:
+		opacity   1s var(--ease),
+		transform 1.1s var(--ease);
+}
+
+.plate.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+
+/* ==========================================================================
+   12  PAGE FADE
    The entire opening. JS adds .is-ready once the hero photograph has
    decoded, and the page arrives as one.
 
@@ -724,7 +815,7 @@ body.is-ready main { opacity: 1; }
 
 
 /* ==========================================================================
-   12  RESPONSIVE
+   13  RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 768px) {
@@ -768,6 +859,13 @@ body.is-ready main { opacity: 1; }
 	}
 
 	.frame__meta::before { content: none; }
+
+	/* Twelve columns is meaningless at this width — every plate goes full */
+	.plate:nth-child(n) {
+		grid-column: span 12;
+		height: 46vh;
+		height: 46svh;
+	}
 
 	.contact__details {
 		grid-template-columns: 1fr;
@@ -824,7 +922,7 @@ body.is-ready main { opacity: 1; }
 
 
 /* ==========================================================================
-   13  A11Y
+   14  A11Y
    ========================================================================== */
 
 :focus-visible {
@@ -839,7 +937,8 @@ body.is-ready main { opacity: 1; }
 	   is not a vestibular trigger. */
 	.nav-list a,
 	.nav-ig,
-	.frame img {
+	.frame img,
+	.plate {
 		transform: none !important;
 	}
 
