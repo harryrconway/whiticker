@@ -791,6 +791,12 @@ main {
 	transform: none;
 }
 
+/* Closes the projects page. On the homepage the contact section supplies the
+   space beneath the colophon; as a direct child of main it needs its own. */
+main > .contact__colophon {
+	padding-bottom: clamp(40px, 8vh, 90px);
+}
+
 
 /* ==========================================================================
    12  PAGE FADE
