@@ -870,6 +870,17 @@ body.is-ready main { opacity: 1; }
 
 	.frame__meta::before { content: none; }
 
+	/* The page tail was ~145px of near-empty space around a single 17px line
+	   of copyright — 17% of a phone screen. Four values stacked up: the last
+	   project's bottom padding, the colophon's top margin, its bottom
+	   padding, and main's. All tightened here; between projects the title's
+	   own top padding still keeps them clearly separated. */
+	.project { padding-bottom: clamp(24px, 3.5vh, 44px); }
+
+	.contact__colophon { margin-top: clamp(14px, 2vh, 24px); }
+
+	main > .contact__colophon { padding-bottom: clamp(16px, 2.2vh, 26px); }
+
 	/* Twelve columns is meaningless at this width — every plate goes full */
 	.plate:nth-child(n) {
 		grid-column: span 12;
