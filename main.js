@@ -6,7 +6,8 @@
    03  NAV
    04  HANDOFF
    05  REVEAL
-   06  INIT
+   06  PROTECT
+   07  INIT
    ========================================================================== */
 
 (function () {
@@ -262,7 +263,23 @@
 
 
 	/* ======================================================================
-	   06  INIT
+	   06  PROTECT
+	   Rex's terms: no download options for the photographs. Blocks the
+	   right click menu and drag out on images only, so links and text
+	   behave normally everywhere else. Paired with the CSS in 11.
+	   ====================================================================== */
+
+	function protect() {
+		function block(e) {
+			if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+		}
+		document.addEventListener('contextmenu', block);
+		document.addEventListener('dragstart', block);
+	}
+
+
+	/* ======================================================================
+	   07  INIT
 	   ====================================================================== */
 
 	function init() {
@@ -270,6 +287,7 @@
 		nav();
 		handoff();
 		reveal();
+		protect();
 	}
 
 	if (document.readyState === 'loading') {

@@ -6,6 +6,19 @@
 	<title>Whiticker</title>
 	<meta name="description" content="Whiticker — architecture, lifestyle &amp; people, travel &amp; hotels. Based on the Gold Coast, working throughout Australia and internationally.">
 
+	<!-- The work is shown for portfolio purposes only and copyright may sit
+	     with Desire Media or its clients, so keep it out of image search -->
+	<meta name="robots" content="noimageindex">
+
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Whiticker">
+	<meta property="og:description" content="Architecture, lifestyle &amp; people, travel &amp; hotels. Based on the Gold Coast, working throughout Australia and internationally.">
+	<meta property="og:url" content="https://whiticker.com.au/">
+	<meta property="og:image" content="https://whiticker.com.au/images/og.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+
 	<!-- Flip no-js → js before first paint, so the hidden-until-revealed
 	     states only apply when JS is actually there to reveal them -->
 	<script>document.documentElement.className = 'js';</script>
@@ -23,7 +36,9 @@
 
 	<!-- Start the hero fetch during head parsing: the page fade is gated on
 	     this image decoding, so it is the one thing between load and fade -->
-	<link rel="preload" as="image" href="images/travel.webp" type="image/webp" fetchpriority="high">
+	<link rel="preload" as="image" href="images/work/the-ashbourne-house/13-1600.webp"
+		imagesrcset="images/work/the-ashbourne-house/13-1000.webp 1000w, images/work/the-ashbourne-house/13-1600.webp 1600w, images/work/the-ashbourne-house/13-2400.webp 2400w"
+		imagesizes="(max-width: 768px) 330vw, 100vw" fetchpriority="high">
 
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -84,9 +99,9 @@
 	 hero → 01 behind the lens → 02 architecture + credits → 03 lifestyle
 	      → 04 travel → 05 contact
 
-	 NOTE: every project name, client, architect and developer below is
-	 INVENTED PLACEHOLDER COPY. Credits assert real commercial relationships —
-	 replace all of it with genuine jobs before this goes anywhere public.
+	 Credits come only from Rex's own folder names (client, place) and the
+	 photographs' capture year. Don't add architects, developers or agencies
+	 he hasn't confirmed: a credit asserts a real commercial relationship.
 	 ========================================================================== -->
 <main id="top">
 
@@ -96,9 +111,14 @@
 	     carries the scroll fade. -->
 	<section class="hero">
 		<figure class="hero__media">
-			<img src="images/travel.webp"
-				alt="Mountain ridges receding into golden haze, a lone figure standing on a rock outcrop"
-				loading="eager" fetchpriority="high" decoding="async">
+			<!-- 330vw on phones: the portrait viewport crops this 3:2 frame to
+			     its middle third, so the decoded width is ~3.3x the screen -->
+			<img src="images/work/the-ashbourne-house/13-1600.webp"
+				srcset="images/work/the-ashbourne-house/13-1000.webp 1000w, images/work/the-ashbourne-house/13-1600.webp 1600w, images/work/the-ashbourne-house/13-2400.webp 2400w"
+				sizes="(max-width: 768px) 330vw, 100vw"
+				width="3000" height="2001"
+				alt="A two storey house at dusk, stone piers beneath a long glazed upper level with a figure at the window"
+				loading="eager" fetchpriority="high" decoding="async" draggable="false">
 		</figure>
 
 		<div class="hero__title">
@@ -133,39 +153,119 @@
 
 	<section class="row">
 		<figure class="frame">
-			<a class="frame__media" href="projects/#one-sydney-harbour" style="--pos:50% 26%">
-				<img src="images/architecture.webp"
-					alt="Sweeping white concrete wall curving against a clear sky"
-					loading="lazy" decoding="async">
-				<p class="frame__note">Light held against a curve</p>
+			<a class="frame__media" href="projects/#doasis" style="--pos:50% 60%">
+				<img src="images/work/doasis/01-1600.webp"
+					srcset="images/work/doasis/01-1000.webp 1000w, images/work/doasis/01-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2250" height="3000"
+					alt="Garden lounges on the lawn beneath a palm, the white two storey house behind"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Afternoon, kept slow</p>
 			</a>
 			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">One Sydney Harbour</span><span class="frame__meta">Sydney / 2026</span></p>
-				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Harbour House Developments</dd></div>
-					<div class="frame__spec"><dt>Architect</dt><dd>Studio Farrow</dd></div>
-					<div class="frame__spec"><dt>Developer</dt><dd>Meridian Property Group</dd></div>
-				</dl>
+				<p class="frame__line"><span class="frame__project">Doasis</span><span class="frame__meta">2023</span></p>
 			</figcaption>
 		</figure>
 		<figure class="frame">
-			<a class="frame__media" href="projects/#one-sydney-harbour" style="--pos:50% 92%">
-				<img src="images/architecture.webp"
-					alt="A figure in black walking beside a shallow reflecting pool at the base of a white wall"
-					loading="lazy" decoding="async">
-				<p class="frame__note">The smallest figure in the frame</p>
+			<a class="frame__media" href="projects/#8-border-street" style="--pos:50% 50%">
+				<img src="images/work/8-border-street/07-1600.webp"
+					srcset="images/work/8-border-street/07-1000.webp 1000w, images/work/8-border-street/07-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2001" height="3000"
+					alt="Timber lined roof edge cantilevering over a rendered courtyard"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Where the roof meets the sky</p>
 			</a>
 			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">One Sydney Harbour</span><span class="frame__meta">Sydney / 2026</span></p>
+				<p class="frame__line"><span class="frame__project">8 Border Street</span><span class="frame__meta">Byron Bay / 2024</span></p>
+			</figcaption>
+		</figure>
+	</section>
+
+	<section class="row">
+		<figure class="frame">
+			<a class="frame__media" href="projects/#one-sydney-harbour" style="--pos:50% 40%">
+				<img src="images/work/one-sydney-harbour/03-1600.webp"
+					srcset="images/work/one-sydney-harbour/03-1000.webp 1000w, images/work/one-sydney-harbour/03-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="1627" height="3000"
+					alt="The twin glass towers seen from the park below"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Two towers, one line of light</p>
+			</a>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">One Sydney Harbour</span><span class="frame__meta">Sydney / 2024</span></p>
+			</figcaption>
+		</figure>
+		<figure class="frame">
+			<a class="frame__media" href="projects/#the-ashbourne-house" style="--pos:50% 60%">
+				<img src="images/work/the-ashbourne-house/06-1600.webp"
+					srcset="images/work/the-ashbourne-house/06-1000.webp 1000w, images/work/the-ashbourne-house/06-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2001" height="3000"
+					alt="Stone clad entry with floating steps lit at dusk"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Stone first, then light</p>
+			</a>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">The Ashbourne House</span><span class="frame__meta">2025</span></p>
 				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Harbour House Developments</dd></div>
-					<div class="frame__spec"><dt>Architect</dt><dd>Studio Farrow</dd></div>
-					<div class="frame__spec"><dt>Developer</dt><dd>Meridian Property Group</dd></div>
+					<div class="frame__spec"><dt>Client</dt><dd>Kennins Developments</dd></div>
 				</dl>
 			</figcaption>
 		</figure>
 	</section>
 
+	<section class="row row--wide">
+		<figure class="frame">
+			<a class="frame__media" href="projects/#dualis" style="--pos:50% 55%">
+				<img src="images/work/dualis/01-1600.webp"
+					srcset="images/work/dualis/01-1000.webp 1000w, images/work/dualis/01-1600.webp 1600w, images/work/dualis/01-2400.webp 2400w"
+					sizes="(max-width: 768px) 290vw, 100vw"
+					width="3000" height="2001"
+					alt="Twin rendered townhouses lit at dusk, a classic car in the driveway"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">A pair, lit for evening</p>
+			</a>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Dualis</span><span class="frame__meta">2025</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>Ella Development</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+	</section>
+
+	<section class="row">
+		<figure class="frame">
+			<a class="frame__media" href="projects/#beach-house" style="--pos:50% 45%">
+				<img src="images/work/beach-house/11-1600.webp"
+					srcset="images/work/beach-house/11-1000.webp 1000w, images/work/beach-house/11-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2003" height="3000"
+					alt="Curved white balconies of the tower lit at dusk"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Every floor a wave</p>
+			</a>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Beach House</span><span class="frame__meta">2023</span></p>
+			</figcaption>
+		</figure>
+		<figure class="frame">
+			<a class="frame__media" href="projects/#el-nido" style="--pos:50% 60%">
+				<img src="images/work/el-nido/13-1600.webp"
+					srcset="images/work/el-nido/13-1000.webp 1000w, images/work/el-nido/13-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2001" height="3000"
+					alt="Arched entry in white render lit at dusk beneath palms"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">An arch to come home through</p>
+			</a>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">El Nido</span><span class="frame__meta">2024</span></p>
+			</figcaption>
+		</figure>
+	</section>
 
 	<!-- ─── 03 ──────────────────────────────────────────────────────────── -->
 	<h2 class="chapter" id="lifestyle">
@@ -175,34 +275,56 @@
 
 	<section class="row">
 		<figure class="frame">
-			<a class="frame__media" href="projects/#private-collection" style="--pos:30% 58%">
-				<img src="images/lifestyle.webp"
-					alt="Silver sports car parked side-on across a paved forecourt"
-					loading="lazy" decoding="async">
-				<p class="frame__note">Kept for the road that deserves it</p>
+			<a class="frame__media" href="projects/#harmony" style="--pos:50% 60%">
+				<img src="images/work/harmony/34-1600.webp"
+					srcset="images/work/harmony/34-1000.webp 1000w, images/work/harmony/34-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2000" height="3000"
+					alt="A woman beneath a beach umbrella as a surfer heads into the water"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Shade, sand, the first wave</p>
 			</a>
 			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">Private Collection</span><span class="frame__meta">Gold Coast / 2025</span></p>
+				<p class="frame__line"><span class="frame__project">Harmony</span><span class="frame__meta">2022</span></p>
 				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Marque Automotive</dd></div>
-					<div class="frame__spec"><dt>Agency</dt><dd>Field &amp; Co</dd></div>
-					<div class="frame__spec"><dt>Location</dt><dd>Gold Coast, QLD</dd></div>
+					<div class="frame__spec"><dt>Client</dt><dd>AVID</dd></div>
 				</dl>
 			</figcaption>
 		</figure>
 		<figure class="frame">
-			<a class="frame__media" href="projects/#hillside-residence" style="--pos:76% 55%">
-				<img src="images/lifestyle.webp"
-					alt="Sports car and a white four-wheel drive outside a modern white house"
-					loading="lazy" decoding="async">
-				<p class="frame__note">Parked where the afternoon lands</p>
+			<a class="frame__media" href="projects/#perspective-helm" style="--pos:50% 45%">
+				<img src="images/work/perspective-helm/30-1600.webp"
+					srcset="images/work/perspective-helm/30-1000.webp 1000w, images/work/perspective-helm/30-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2001" height="3000"
+					alt="A woman laughing as she leads the way along the beach"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Follow the light down the beach</p>
 			</a>
 			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">Hillside Residence</span><span class="frame__meta">Byron Bay / 2025</span></p>
+				<p class="frame__line"><span class="frame__project">Perspective Helm</span><span class="frame__meta">2024</span></p>
 				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Aster Developments</dd></div>
-					<div class="frame__spec"><dt>Architect</dt><dd>Studio Farrow</dd></div>
-					<div class="frame__spec"><dt>Location</dt><dd>Byron Bay, NSW</dd></div>
+					<div class="frame__spec"><dt>Client</dt><dd>Sherpa Group</dd></div>
+				</dl>
+			</figcaption>
+		</figure>
+	</section>
+
+	<section class="row row--wide">
+		<figure class="frame">
+			<a class="frame__media" href="projects/#marlie" style="--pos:70% 50%">
+				<img src="images/work/marlie/01-1600.webp"
+					srcset="images/work/marlie/01-1000.webp 1000w, images/work/marlie/01-1600.webp 1600w, images/work/marlie/01-2400.webp 2400w"
+					sizes="(max-width: 768px) 290vw, 100vw"
+					width="3000" height="2000"
+					alt="A surfer carrying her board through dune grass at sunset"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Last light through the dunes</p>
+			</a>
+			<figcaption class="frame__credit">
+				<p class="frame__line"><span class="frame__project">Marlie</span><span class="frame__meta">2025</span></p>
+				<dl class="frame__specs">
+					<div class="frame__spec"><dt>Client</dt><dd>CHP</dd></div>
 				</dl>
 			</figcaption>
 		</figure>
@@ -216,71 +338,31 @@
 
 	<section class="row">
 		<figure class="frame">
-			<a class="frame__media" href="projects/#alpine-traverse" style="--pos:67% 64%">
-				<img src="images/travel.webp"
-					alt="A walker standing alone on a rock outcrop above forested ridges"
-					loading="lazy" decoding="async">
-				<p class="frame__note">The long way round, taken slowly</p>
+			<a class="frame__media" href="projects/#remi-residences" style="--pos:50% 60%">
+				<img src="images/work/remi-residences/07-1600.webp"
+					srcset="images/work/remi-residences/07-1000.webp 1000w, images/work/remi-residences/07-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2001" height="3000"
+					alt="A woman at the end of a narrow pool lined with loungers"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Morning, in still water</p>
 			</a>
 			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">Alpine Traverse</span><span class="frame__meta">Victoria / 2025</span></p>
-				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Northbound Travel</dd></div>
-					<div class="frame__spec"><dt>Agency</dt><dd>Field &amp; Co</dd></div>
-					<div class="frame__spec"><dt>Location</dt><dd>Victorian Alps</dd></div>
-				</dl>
+				<p class="frame__line"><span class="frame__project">REMI Residences</span><span class="frame__meta">2024</span></p>
 			</figcaption>
 		</figure>
 		<figure class="frame">
-			<a class="frame__media" href="projects/#hinterland-lodge" style="--pos:22% 50%">
-				<img src="images/travel.webp"
-					alt="Rock spires rising from a green ridge in late afternoon light"
-					loading="lazy" decoding="async">
-				<p class="frame__note">Stone that got there first</p>
+			<a class="frame__media" href="projects/#ss-sphinx" style="--pos:50% 50%">
+				<img src="images/work/ss-sphinx/37-1600.webp"
+					srcset="images/work/ss-sphinx/37-1000.webp 1000w, images/work/ss-sphinx/37-1600.webp 1600w"
+					sizes="(max-width: 768px) 130vw, 50vw"
+					width="2001" height="3000"
+					alt="A camel handler with his camels before the Great Pyramid"
+					loading="lazy" decoding="async" draggable="false">
+				<p class="frame__note">Older than every map</p>
 			</a>
 			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">Hinterland Lodge</span><span class="frame__meta">Gold Coast / 2024</span></p>
-				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Hinterland Group</dd></div>
-					<div class="frame__spec"><dt>Architect</dt><dd>Marlow Architects</dd></div>
-					<div class="frame__spec"><dt>Location</dt><dd>Gold Coast, QLD</dd></div>
-				</dl>
-			</figcaption>
-		</figure>
-	</section>
-
-	<!-- Chapter 04 continues — no marker, these belong to Travel / Hotels -->
-	<section class="row">
-		<figure class="frame">
-			<a class="frame__media" href="projects/#highland-crossing" style="--pos:50% 20%">
-				<img src="images/travel.webp"
-					alt="Layered mountain ridges fading into haze"
-					loading="lazy" decoding="async">
-				<p class="frame__note">Ridge after ridge, going quiet</p>
-			</a>
-			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">Highland Crossing</span><span class="frame__meta">Tasmania / 2026</span></p>
-				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Southern Wilds</dd></div>
-					<div class="frame__spec"><dt>Agency</dt><dd>Meridian Creative</dd></div>
-					<div class="frame__spec"><dt>Location</dt><dd>Central Highlands, TAS</dd></div>
-				</dl>
-			</figcaption>
-		</figure>
-		<figure class="frame">
-			<a class="frame__media" href="projects/#the-escarpment" style="--pos:90% 70%">
-				<img src="images/travel.webp"
-					alt="Weathered rock formations along a high mountain ridge"
-					loading="lazy" decoding="async">
-				<p class="frame__note">Somewhere the season turns first</p>
-			</a>
-			<figcaption class="frame__credit">
-				<p class="frame__line"><span class="frame__project">The Escarpment</span><span class="frame__meta">New England / 2026</span></p>
-				<dl class="frame__specs">
-					<div class="frame__spec"><dt>Client</dt><dd>Escarpment Lodges</dd></div>
-					<div class="frame__spec"><dt>Architect</dt><dd>Marlow Architects</dd></div>
-					<div class="frame__spec"><dt>Location</dt><dd>New England, NSW</dd></div>
-				</dl>
+				<p class="frame__line"><span class="frame__project">SS Sphinx</span><span class="frame__meta">Egypt / 2026</span></p>
 			</figcaption>
 		</figure>
 	</section>
@@ -315,8 +397,13 @@
 		</div>
 
 		<!-- Sits in its own bottom grid row, not inside the centred block —
-		     otherwise its top margin strands empty space beneath it -->
-		<p class="contact__colophon">© 2026 Whiticker — Based on the Gold Coast, working throughout Australia and internationally.</p>
+		     otherwise its top margin strands empty space beneath it.
+		     The disclaimer is Rex's wording, supplied for legal reasons: keep
+		     it verbatim on every page that shows the photographs. -->
+		<footer class="foot">
+			<p class="foot__disclaimer">Selected imagery displayed on this website was photographed by Rex Whiticker during his time as a founder and director of Desire Media. These images are displayed solely for portfolio and self-promotional purposes. Copyright and usage rights may remain with Desire Media or the respective clients.</p>
+			<p class="contact__colophon">© 2026 Whiticker — Based on the Gold Coast, working throughout Australia and internationally.</p>
+		</footer>
 	</section>
 
 </main>

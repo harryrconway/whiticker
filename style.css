@@ -344,9 +344,10 @@ body.nav-open .nav-ig {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	/* travel.jpg is 1.5:1 against a ~1.6:1 hero, so it crops barely at all.
-	   Sits low to put the ridges and outcrop under the wordmark. */
-	object-position: 50% 58%;
+	/* A 3:2 photograph against a ~1.6:1 hero, so on desktop it crops barely
+	   at all. Centred so phones, which see only the middle third, keep the
+	   house's glazed core. */
+	object-position: 50% 50%;
 }
 
 .hero__title {
@@ -463,6 +464,9 @@ main {
 	gap: var(--inset);
 	padding: calc(var(--inset) / 2) var(--inset);
 }
+
+/* One landscape frame across the full row — breaks up the run of pairs */
+.row--wide { grid-template-columns: 1fr; }
 
 /* The plate: photograph on top, credit band beneath. overflow / background /
    position all live on .frame__media, NOT here — leaving overflow on the
@@ -692,6 +696,21 @@ main {
 
 /* Centred and bottom-aligned — the one element on the page that breaks the
    left editorial column, which is what makes it read as a footer */
+/* Rex's legal disclaimer. Sentence case and normal tracking, unlike the
+   uppercase labels around it: it has to be quiet but genuinely readable.
+   --ink-quiet on --bg is about 6.5:1, comfortably past WCAG AA. */
+.foot__disclaimer {
+	max-width: 72ch;
+	margin: clamp(36px, 6vh, 72px) auto 0;
+	padding: 0 var(--inset);
+	font-size: clamp(0.72rem, 0.85vw, 0.8rem);
+	letter-spacing: 0.02em;
+	line-height: 1.8;
+	text-align: center;
+	text-wrap: pretty;
+	color: var(--ink-quiet);
+}
+
 .contact__colophon {
 	max-width: 82ch;        /* wide enough to hold two clean lines, not three ragged ones */
 	margin: clamp(18px, 2.6vh, 34px) auto 0;
@@ -708,25 +727,30 @@ main {
 
 /* ==========================================================================
    11  PROJECTS  (projects/index.html)
-   One repeating six-plate module per commission. Every project uses the same
-   markup; nth-child places each plate, so adding a project is adding six
-   <img> tags and nothing else.
+   Real photographs, so nothing is cropped: every plate keeps the aspect
+   ratio it was shot at. Each row is a justified strip — plates grow in
+   proportion to their ratio (--ar), which gives every plate in the row the
+   same height. --sum is the row's total ratio and --n its plate count.
 
-        [        1  span 12        ]  78vh
-        [   2  span 7 ][ 3 span 5 ]  56vh
-        [ 4 span 5 ][   5  span 7 ]  56vh
-        [        6  span 12        ]  78vh
+   A row may never be taller than --row-h. When it would be (a lone
+   landscape, a portrait pair) the row narrows and centres instead of
+   cropping, so the frame reads like a print on a wall.
    ========================================================================== */
 
 .project {
+	--row-h: 86vh;
+	--row-h: 86svh;
 	padding-bottom: clamp(44px, 7vh, 88px);
 	/* Deep links from the homepage land here — without this the title sits
 	   flush against the viewport edge with no air above it */
 	scroll-margin-top: clamp(24px, 6vh, 64px);
 }
 
-.project__title {
+.project__head {
 	padding: clamp(40px, 7vh, 90px) var(--inset) clamp(18px, 2.6vh, 34px);
+}
+
+.project__title {
 	font-size: var(--chapter-size);
 	font-weight: 400;
 	letter-spacing: var(--track-wide);
@@ -735,41 +759,62 @@ main {
 	color: var(--ink);
 }
 
-.project__grid {
-	display: grid;
-	/* minmax(0, …) is load-bearing: a bare 1fr carries a min-content floor,
-	   which lets a portrait photograph's intrinsic height blow out its track */
-	grid-template-columns: repeat(12, minmax(0, 1fr));
+.project__specs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6em clamp(20px, 2.4vw, 40px);
+	margin-top: clamp(12px, 1.6vh, 18px);
+	font-size: var(--credit-size);
+	letter-spacing: var(--track-wide);
+	text-transform: uppercase;
+	line-height: 1.5;
+}
+
+.project__spec { display: flex; gap: 0.9em; }
+.project__spec dt { color: var(--ink-quiet); }
+.project__spec dd { color: var(--ink-soft); letter-spacing: 0.1em; }
+
+/* Rex's short per project credit — sentence case so it reads as a line,
+   not another label */
+.project__credit {
+	margin-top: clamp(10px, 1.4vh, 16px);
+	font-size: clamp(0.72rem, 0.85vw, 0.8rem);
+	letter-spacing: 0.02em;
+	line-height: 1.7;
+	color: var(--ink-quiet);
+}
+
+.project__rows {
+	display: flex;
+	flex-direction: column;
 	gap: var(--inset);
 	padding: 0 var(--inset);
 }
 
+.project__row {
+	display: flex;
+	gap: var(--inset);
+	width: 100%;
+	max-width: calc(var(--sum) * var(--row-h) + (var(--n) - 1) * var(--inset));
+	margin: 0 auto;
+}
+
 .plate {
 	position: relative;
+	flex: var(--ar) 1 0%;
+	aspect-ratio: var(--ar);
 	overflow: hidden;
 	background: var(--bg-raise);
 }
 
-/* Absolutely positioned for the same reason as the homepage plates: the
-   photograph must never contribute its intrinsic size to track sizing */
 .plate img {
 	position: absolute;
 	inset: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: var(--pos, 50% 50%);
 	transition: opacity var(--dur) var(--ease);
 }
-
-.plate:nth-child(1),
-.plate:nth-child(6) { grid-column: span 12; height: 78vh; height: 78svh; }
-
-.plate:nth-child(2),
-.plate:nth-child(5) { grid-column: span 7;  height: 56vh; height: 56svh; }
-
-.plate:nth-child(3),
-.plate:nth-child(4) { grid-column: span 5;  height: 56vh; height: 56svh; }
 
 @media (hover: hover) and (pointer: fine) {
 	.plate:hover img { opacity: var(--hover-alpha); }
@@ -797,8 +842,21 @@ main {
 
 /* Closes the projects page. On the homepage the contact section supplies the
    space beneath the colophon; as a direct child of main it needs its own. */
-main > .contact__colophon {
+main > .foot {
 	padding-bottom: clamp(28px, 5vh, 56px);
+}
+
+/* --- No saving ----------------------------------------------------------
+   Rex's terms: the photographs are not offered for download. Nothing on the
+   web is truly locked, but this removes the easy routes — drag out, iOS
+   long press save, text selection. main.js blocks the right click menu. */
+.hero img,
+.frame img,
+.plate img {
+	-webkit-user-drag: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 
@@ -879,14 +937,18 @@ body.is-ready main { opacity: 1; }
 
 	.contact__colophon { margin-top: clamp(14px, 2vh, 24px); }
 
-	main > .contact__colophon { padding-bottom: clamp(16px, 2.2vh, 26px); }
+	.foot__disclaimer { margin-top: clamp(28px, 4vh, 40px); }
 
-	/* Twelve columns is meaningless at this width — every plate goes full */
-	.plate:nth-child(n) {
-		grid-column: span 12;
-		height: 46vh;
-		height: 46svh;
+	main > .foot { padding-bottom: clamp(16px, 2.2vh, 26px); }
+
+	/* Side by side strips would shrink to thumbnails at this width — every
+	   plate goes full width, still at its own ratio */
+	.project__row {
+		flex-direction: column;
+		max-width: none;
 	}
+
+	.plate { flex: none; width: 100%; }
 
 	.contact__details {
 		grid-template-columns: 1fr;
