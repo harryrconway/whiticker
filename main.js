@@ -92,10 +92,75 @@
 	   03  NAV
 	   ====================================================================== */
 
+	// The menu's left half: one of these, never the same twice running.
+	// Portraits only — the half is taller than wide on most screens. Root
+	// absolute so the same list works from /projects/.
+	var NAV_IMAGES = [
+		['doasis/01', 'Doasis'],
+		['8-border-street/07', '8 Border Street'],
+		['one-sydney-harbour/01', 'One Sydney Harbour'],
+		['the-ashbourne-house/06', 'The Ashbourne House'],
+		['dualis/02', 'Dualis'],
+		['beach-house/11', 'Beach House'],
+		['beach-house/16', 'Beach House'],
+		['el-nido/13', 'El Nido'],
+		['harmony/34', 'Harmony'],
+		['perspective-helm/30', 'Perspective Helm'],
+		['marlie/27', 'Marlie'],
+		['remi-residences/07', 'REMI Residences'],
+		['remi-residences/21', 'REMI Residences'],
+		['ss-sphinx/37', 'SS Sphinx'],
+		['ss-sphinx/52', 'SS Sphinx']
+	];
+
+	function navImages() {
+		var media = el.overlay && el.overlay.querySelector('.nav-overlay__media');
+		var img = media && media.querySelector('img');
+		var caption = media && media.querySelector('.nav-overlay__caption');
+		// Phones hide the photograph entirely, so never fetch one there
+		var wide = window.matchMedia ? window.matchMedia('(min-width: 769px)') : { matches: true };
+		var current = -1;
+		var next = -1;
+
+		function src(i) { return '/images/work/' + NAV_IMAGES[i][0] + '-1600.webp'; }
+
+		function pick() {
+			var i;
+			do { i = Math.floor(Math.random() * NAV_IMAGES.length); }
+			while (i === current && NAV_IMAGES.length > 1);
+			return i;
+		}
+
+		// Fetch the next photograph ahead of time so opening never waits on it
+		function preload() {
+			if (!img || !wide.matches) return;
+			next = pick();
+			new Image().src = src(next);
+		}
+
+		function show() {
+			if (!img || !wide.matches) return;
+			current = next >= 0 ? next : pick();
+			next = -1;
+			media.classList.remove('is-in');
+			img.onload = function () { media.classList.add('is-in'); };
+			img.src = src(current);
+			if (img.complete && img.naturalWidth) media.classList.add('is-in');
+			caption.textContent = NAV_IMAGES[current][1];
+			preload();
+		}
+
+		// Warm the first one once the page itself has finished loading
+		window.addEventListener('load', function () { window.setTimeout(preload, 1200); });
+
+		return show;
+	}
+
 	function nav() {
 		if (!el.toggle || !el.overlay) return;
 
 		var isOpen = false;
+		var showImage = navImages();
 
 		function lockScroll(lock) {
 			if (lock) {
@@ -110,6 +175,7 @@
 		}
 
 		function setOpen(open) {
+			if (open) showImage();
 			isOpen = open;
 			body.classList.toggle('nav-open', open);
 			el.toggle.setAttribute('aria-expanded', String(open));
@@ -128,10 +194,13 @@
 			setOpen(!isOpen);
 		});
 
-		// Click off — only when the backdrop itself is hit, so link clicks
-		// aren't swallowed on their way through
+		// Click off — the photograph or the panel's empty space. Never the
+		// details themselves, so the ABN or an address can be selected.
 		el.overlay.addEventListener('click', function (e) {
-			if (e.target === el.overlay || e.target.classList.contains('nav-overlay__inner')) {
+			var t = e.target;
+			if (t === el.overlay ||
+				t.classList.contains('nav-overlay__panel') ||
+				(t.closest && t.closest('.nav-overlay__media'))) {
 				close();
 			}
 		});

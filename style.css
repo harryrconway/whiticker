@@ -162,6 +162,9 @@ ul { list-style: none; }
 
 body.past-hero .brand { pointer-events: auto; }
 
+/* With the menu open the name always shows, even over the hero */
+body.nav-open .brand { opacity: 1; pointer-events: auto; }
+
 
 /* ==========================================================================
    04  NAV TOGGLE — two bars that rotate into an X
@@ -216,11 +219,8 @@ body.nav-open .nav-toggle__bar:nth-child(2) { transform: translateY(-3px) rotate
 	inset: 0;
 	z-index: 110;
 	display: grid;
-	place-items: center;
-
-	background: rgba(25, 22, 20, 0.55);   /* matches the softened ground */
-	-webkit-backdrop-filter: blur(28px) saturate(120%);
-	backdrop-filter: blur(28px) saturate(120%);
+	grid-template-columns: 1fr 1fr;
+	background: var(--bg);
 
 	/* visibility (not opacity alone) keeps links out of the tab order */
 	opacity: 0;
@@ -240,27 +240,71 @@ body.nav-open .nav-overlay {
 		visibility 0s linear 0s;
 }
 
-.nav-overlay__inner {
+/* Left half — a photograph, swapped for another each time the menu opens */
+.nav-overlay__media {
+	position: relative;
+	overflow: hidden;
+	background: var(--bg-raise);
+}
+
+.nav-overlay__media img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transform: scale(1.04);
+	transition:
+		opacity   0.9s var(--ease),
+		transform var(--dur-slow) var(--ease);
+	-webkit-user-drag: none;
+	-webkit-touch-callout: none;
+	user-select: none;
+}
+
+.nav-overlay__caption {
+	position: absolute;
+	left: var(--edge);
+	bottom: var(--edge);
+	font-size: var(--credit-size);
+	letter-spacing: var(--track-wide);
+	color: var(--ink);
+	text-shadow: 0 1px 18px rgba(0, 0, 0, 0.6);
+	opacity: 0;
+	transition: opacity var(--dur) var(--ease);
+}
+
+body.nav-open .nav-overlay__media.is-in img { opacity: 1; transform: none; }
+body.nav-open .nav-overlay__media.is-in .nav-overlay__caption {
+	opacity: 1;
+	transition-delay: 0.35s;
+}
+
+/* Right half — menu then details, flush right under the toggle */
+.nav-overlay__panel {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
-	text-align: center;
-	padding: var(--gutter);
+	align-items: flex-end;
+	gap: clamp(48px, 9vh, 96px);
+	padding: calc(var(--edge) + 72px) var(--gutter) var(--edge);
+	text-align: right;
+	overflow-y: auto;
 }
 
 .nav-list {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	gap: clamp(0.55rem, 1.6vh, 1.1rem);
+	align-items: flex-end;
+	gap: clamp(0.35rem, 1.1vh, 0.8rem);
 }
 
 .nav-list a {
 	display: inline-block;
 	font-size: var(--nav-size);
-	letter-spacing: 0.04em;
-	line-height: 1.3;
+	letter-spacing: 0.02em;
+	line-height: 1.2;
 	color: var(--ink);
 
 	opacity: 0;
@@ -282,27 +326,37 @@ body.nav-open .nav-list a {
 	.nav-list a:hover { opacity: 1; }
 }
 
-.nav-ig {
-	display: inline-grid;
-	place-items: center;
-	margin-top: clamp(28px, 5vh, 60px);
-	color: var(--ink);
+/* Business details — the same set as the footer, one size and one colour */
+.biz {
+	font-size: var(--credit-size);
+	letter-spacing: var(--track-wide);
+	line-height: 1.6;
+}
+
+.biz__item { display: flex; gap: 0.9em; }
+
+.biz a { transition: opacity var(--dur) var(--ease); }
+.biz a:hover { opacity: var(--hover-alpha); }
+
+.nav-biz {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 0.55em;
+	color: var(--ink-soft);
 
 	opacity: 0;
 	transform: translateY(18px);
 	transition:
 		opacity   0.7s var(--ease),
-		transform 0.7s var(--ease),
-		color     var(--dur) var(--ease);
+		transform 0.7s var(--ease);
 }
 
-body.nav-open .nav-ig {
+body.nav-open .nav-biz {
 	opacity: 1;
 	transform: translateY(0);
-	transition-delay: 340ms;
+	transition-delay: 320ms;
 }
-
-.nav-ig:hover { color: var(--ink-dim); }
 
 
 /* ==========================================================================
@@ -796,6 +850,20 @@ main {
 .contact__item dd a { transition: opacity var(--dur) var(--ease); }
 .contact__item dd a:hover { opacity: var(--hover-alpha); }
 
+/* Business details, one centred row above the disclaimer */
+.foot__biz {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.4em clamp(20px, 2.4vw, 40px);
+	max-width: 1240px;
+	margin: clamp(36px, 6vh, 72px) auto 0;
+	padding: 0 var(--inset);
+	color: var(--ink-quiet);
+}
+
+.foot__biz + .foot__disclaimer { margin-top: clamp(18px, 2.6vh, 28px); }
+
 /* Rex's legal disclaimer, verbatim: quiet, but sized to stay genuinely
    readable.
    --ink-quiet on --bg is about 6.5:1, comfortably past WCAG AA. */
@@ -978,10 +1046,10 @@ body.is-ready main { opacity: 1; }
    ========================================================================== */
 
 @media (max-width: 768px) {
-	/* Sized so the longest label ("Lifestyle & People") holds a single line —
-	   three clean lines read far better than five wrapped ones */
+	/* Phones: the menu fills the screen, so its links can be large; other
+	   sizes step down to suit the narrow column */
 	:root {
-		--nav-size:  clamp(1.15rem, 5.6vw, 1.9rem);
+		--nav-size:  clamp(1.9rem, 9vw, 2.6rem);
 		--cap-size:  clamp(0.85rem, 3.4vw, 0.95rem);
 		--hero-size: clamp(1.6rem, 11vw, 3.4rem);
 		--tag-size:  clamp(0.78rem, 3.2vw, 0.9rem);
@@ -1067,8 +1135,26 @@ body.is-ready main { opacity: 1; }
 
 	.brand { letter-spacing: 0.12em; }
 
-	.nav-list { gap: clamp(0.8rem, 2.4vh, 1.4rem); }
-	.nav-list a { letter-spacing: 0.03em; }
+	/* No photograph on a phone: the panel takes the screen, menu at the
+	   top, details at the foot, both flush right under the toggle */
+	.nav-overlay { grid-template-columns: 1fr; }
+	.nav-overlay__media { display: none; }
+
+	.nav-overlay__panel {
+		justify-content: space-between;
+		gap: 48px;
+		padding: calc(var(--edge) + 96px) var(--gutter) calc(var(--edge) + 20px);
+	}
+
+	.nav-list { gap: clamp(0.5rem, 1.8vh, 1rem); }
+	.nav-biz { gap: 0.75em; }
+
+	/* One detail per line on a phone, rather than an uneven wrap */
+	.foot__biz {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.35em;
+	}
 
 	/* Side by side would leave two slivers — stack instead, each image
 	   keeping the full viewport height */
@@ -1097,7 +1183,7 @@ body.is-ready main { opacity: 1; }
 /* Short landscape viewports — keep the nav from overflowing */
 @media (max-height: 480px) {
 	:root { --nav-size: clamp(1.2rem, 6vh, 2rem); }
-	.nav-ig { margin-top: 20px; }
+	.nav-overlay__panel { justify-content: flex-start; gap: 28px; }
 }
 
 
@@ -1116,7 +1202,8 @@ body.is-ready main { opacity: 1; }
 	/* Keep fades, drop all movement. The wordmark crossfade stays — opacity
 	   is not a vestibular trigger. */
 	.nav-list a,
-	.nav-ig,
+	.nav-biz,
+	.nav-overlay__media img,
 	.frame img,
 	.plate {
 		transform: none !important;

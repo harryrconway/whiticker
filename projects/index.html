@@ -54,29 +54,37 @@
 	</button>
 </header>
 
+<!-- ==========================================================================
+	 NAV — a 50/50 split. Left: one of Rex's photographs, a different one each
+	 time it opens (main.js picks it; the img has no src until then). Right:
+	 the menu and the business details, hung from the right edge under the
+	 toggle. Phones drop the photograph and spread the panel down the screen.
+	 ========================================================================== -->
 <nav id="site-nav" class="nav-overlay" aria-hidden="true">
-	<div class="nav-overlay__inner">
-		<!-- Links resolve to the homepage from this depth -->
+	<div class="nav-overlay__media" aria-hidden="true">
+		<img alt="" decoding="async" draggable="false">
+		<p class="nav-overlay__caption"></p>
+	</div>
+
+	<div class="nav-overlay__panel">
 		<ul class="nav-list">
 			<li style="--i:0"><a href="../#behind-the-lens">About</a></li>
 			<li style="--i:1"><a href="#top">Projects</a></li>
 			<li style="--i:2"><a href="../#contact">Contact</a></li>
 		</ul>
 
-		<a
-			class="nav-ig"
-			href="https://www.instagram.com/"
-			target="_blank"
-			rel="noopener noreferrer"
-			aria-label="Instagram">
-			<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
-				<rect x="2.5" y="2.5" width="19" height="19" rx="5.25"
-					fill="none" stroke="currentColor" stroke-width="1.3"/>
-				<circle cx="12" cy="12" r="4.6"
-					fill="none" stroke="currentColor" stroke-width="1.3"/>
-				<circle cx="17.6" cy="6.4" r="1.15" fill="currentColor"/>
-			</svg>
-		</a>
+		<!-- PLACEHOLDER business details: email, phone, handles, ABN and ACN.
+	     Replace with Rex's real ones here, in the footer and in the contact
+	     section, on both pages. -->
+		<dl class="biz nav-biz">
+			<div class="biz__item"><dt>Email</dt><dd><a href="mailto:hello@whiticker.com.au">hello@whiticker.com.au</a></dd></div>
+			<div class="biz__item"><dt>Telephone</dt><dd><a href="tel:+61400000000">+61 400 000 000</a></dd></div>
+			<div class="biz__item"><dt>Instagram</dt><dd><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">@whiticker</a></dd></div>
+			<div class="biz__item"><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">@whiticker</a></dd></div>
+			<div class="biz__item"><dt>Based</dt><dd>Gold Coast, Australia</dd></div>
+			<div class="biz__item"><dt>ABN</dt><dd>00 000 000 000</dd></div>
+			<div class="biz__item"><dt>ACN</dt><dd>000 000 000</dd></div>
+		</dl>
 	</div>
 </nav>
 
@@ -1329,6 +1337,13 @@
 	</section>
 
 	<footer class="foot">
+		<dl class="biz foot__biz">
+			<div class="biz__item"><dt>Based</dt><dd>Gold Coast, Australia</dd></div>
+			<div class="biz__item"><dt>Email</dt><dd><a href="mailto:hello@whiticker.com.au">hello@whiticker.com.au</a></dd></div>
+			<div class="biz__item"><dt>Telephone</dt><dd><a href="tel:+61400000000">+61 400 000 000</a></dd></div>
+			<div class="biz__item"><dt>ABN</dt><dd>00 000 000 000</dd></div>
+			<div class="biz__item"><dt>ACN</dt><dd>000 000 000</dd></div>
+		</dl>
 		<p class="foot__disclaimer">Selected imagery displayed on this website was photographed by Rex Whiticker during his time as a founder and director of Desire Media. These images are displayed solely for portfolio and self-promotional purposes. Copyright and usage rights may remain with Desire Media or the respective clients.</p>
 		<p class="contact__colophon">© 2026 Whiticker</p>
 	</footer>
