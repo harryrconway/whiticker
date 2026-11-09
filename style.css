@@ -47,10 +47,10 @@
 	--credit-size:  clamp(0.78rem, 0.9vw, 0.88rem);
 	--spec-size:    clamp(0.78rem, 0.9vw, 0.88rem);
 	--chapter-size: clamp(0.95rem, 1.2vw, 1.2rem);
-	--about-size:   clamp(1.05rem, 1.75vw, 1.6rem);
+	--about-size:   clamp(0.95rem, 1.5vw, 1.2rem);
 
-	/* Headings, captions and labels are set in lowercase. Wide tracking
-	   only flatters capitals; lowercase wants barely any. */
+	/* Headings, captions and labels are set in sentence case. Wide tracking
+	   only flatters all capitals; mixed case wants barely any. */
 	--track-wide: 0.03em;
 
 	/* Caption band beneath each plate. FIXED, not auto: an auto height would
@@ -260,7 +260,6 @@ body.nav-open .nav-overlay {
 	display: inline-block;
 	font-size: var(--nav-size);
 	letter-spacing: 0.04em;
-	text-transform: lowercase;
 	line-height: 1.3;
 	color: var(--ink);
 
@@ -399,7 +398,6 @@ body.nav-open .nav-ig {
 	margin-top: clamp(14px, 2.2vh, 26px);
 	font-size: var(--tag-size);
 	letter-spacing: 0.04em;
-	text-transform: lowercase;
 	line-height: 1.9;
 	/* Brighter than --ink-dim: the tagline sits over the lit part of the
 	   photograph, where 0.55 alpha loses legibility */
@@ -446,7 +444,6 @@ body.nav-open .nav-ig {
 	font-size: var(--chapter-size);
 	font-weight: 400;
 	letter-spacing: var(--track-wide);
-	text-transform: lowercase;
 	line-height: 1;
 	color: var(--ink);
 }
@@ -528,7 +525,6 @@ main {
 
 	font-size: var(--cap-size);
 	letter-spacing: 0.03em;
-	text-transform: lowercase;
 	text-align: center;      /* half-width frames wrap — keep both lines centred */
 	text-wrap: balance;
 	line-height: 1.7;
@@ -570,7 +566,6 @@ main {
 	padding-top: clamp(9px, 1.2vh, 14px);
 	font-size: var(--credit-size);
 	letter-spacing: var(--track-wide);
-	text-transform: lowercase;
 	line-height: 1.5;
 }
 
@@ -626,8 +621,7 @@ main {
 }
 
 /* Left-aligned, so it sits in the same column as the chapter marker above */
-/* Centred and allowed the full width of the page. The type steps up with
-   the viewport so the longer measure still reads as a few calm lines. */
+/* Centred and allowed the full width of the page, at the normal body size */
 .about__body {
 	text-align: center;
 	text-wrap: pretty;
@@ -670,7 +664,6 @@ main {
 	font-weight: 400;
 	letter-spacing: 0.01em;
 	line-height: 1.1;
-	text-transform: lowercase;
 }
 
 .contact__lede {
@@ -703,7 +696,6 @@ main {
 	gap: 4px;
 	font-size: var(--credit-size);
 	letter-spacing: var(--track-wide);
-	text-transform: lowercase;
 	color: var(--ink-quiet);
 }
 
@@ -714,7 +706,6 @@ main {
 	font: inherit;
 	font-size: clamp(1.05rem, 1.4vw, 1.25rem);
 	letter-spacing: 0.02em;
-	text-transform: none;
 	text-align: center;
 	color: var(--ink);
 	background: transparent;
@@ -754,7 +745,6 @@ main {
 	padding: 0 4px;
 	font-size: clamp(0.95rem, 1.1vw, 1.05rem);
 	letter-spacing: 0.04em;
-	text-transform: lowercase;
 	border-bottom: 1px solid var(--ink);
 	transition: opacity var(--dur) var(--ease);
 }
@@ -793,7 +783,6 @@ main {
 .contact__item dt {
 	font-size: var(--credit-size);
 	letter-spacing: var(--track-wide);
-	text-transform: lowercase;
 	color: var(--ink-quiet);
 }
 
@@ -807,8 +796,8 @@ main {
 .contact__item dd a { transition: opacity var(--dur) var(--ease); }
 .contact__item dd a:hover { opacity: var(--hover-alpha); }
 
-/* Rex's legal disclaimer. Sentence case, unlike the lowercase labels
-   around it: it has to be quiet but genuinely readable.
+/* Rex's legal disclaimer, verbatim: quiet, but sized to stay genuinely
+   readable.
    --ink-quiet on --bg is about 6.5:1, comfortably past WCAG AA. */
 .foot__disclaimer {
 	max-width: 72ch;
@@ -830,7 +819,6 @@ main {
 	padding: 0 var(--inset);
 	font-size: var(--credit-size);
 	letter-spacing: 0.03em;
-	text-transform: lowercase;
 	text-align: center;
 	text-wrap: balance;
 	line-height: 1.9;
@@ -867,7 +855,6 @@ main {
 	font-size: var(--chapter-size);
 	font-weight: 400;
 	letter-spacing: var(--track-wide);
-	text-transform: lowercase;
 	line-height: 1;
 	color: var(--ink);
 }
@@ -879,7 +866,6 @@ main {
 	margin-top: clamp(12px, 1.6vh, 18px);
 	font-size: var(--credit-size);
 	letter-spacing: var(--track-wide);
-	text-transform: lowercase;
 	line-height: 1.5;
 }
 
