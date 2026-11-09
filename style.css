@@ -670,8 +670,11 @@ main {
    09  BEHIND THE LENS
    ========================================================================== */
 
+/* No bottom padding: the next chapter heading's own top padding is the gap,
+   the same rhythm as everywhere else. Padding here as well stacked the two
+   into a ~225px hole under the bio. */
 .about {
-	padding: 0 var(--inset) clamp(80px, 16vh, 180px);
+	padding: 0 var(--inset);
 }
 
 /* Left-aligned, so it sits in the same column as the chapter marker above */
