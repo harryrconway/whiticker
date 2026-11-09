@@ -364,18 +364,34 @@
 	</section>
 
 	<!-- ─── 05 ─────────────────────────────────────────────────────────────
-	     Full-viewport close. Contact details below are PLACEHOLDER — replace
-	     with the real address, phone and handle before publishing.
+	     Contact, centred. The address, phone and handles are PLACEHOLDER —
+	     replace them (and the form's mailto) with Rex's real details.
+
+	     The site is static, so the form has no server to post to: main.js
+	     turns it into a pre-filled email in the visitor's own mail app. To
+	     receive enquiries directly instead, point the form at a form service
+	     (Formspree, Web3Forms) set up in Rex's name.
 	     ──────────────────────────────────────────────────────────────────── -->
 	<section class="contact" id="contact">
-		<h2 class="chapter chapter--flush">
-			<span class="chapter__name">Contact</span>
-		</h2>
-
 		<div class="contact__inner">
-			<a class="contact__email" href="mailto:hello@whiticker.com.au">hello@whiticker.com.au</a>
+			<h2 class="contact__title">Let's talk</h2>
+			<p class="contact__lede">Commissions, collaborations and everything in between.</p>
+
+			<form class="enquiry" action="mailto:hello@whiticker.com.au" method="post" enctype="text/plain">
+				<div class="enquiry__pair">
+					<label class="enquiry__field">Name<input type="text" name="name" autocomplete="name" required></label>
+					<label class="enquiry__field">Email<input type="email" name="email" autocomplete="email" required></label>
+				</div>
+				<label class="enquiry__field">Message<textarea name="message" rows="2" required></textarea></label>
+				<button class="enquiry__send" type="submit">Send enquiry <svg width="22" height="10" viewBox="0 0 22 10" aria-hidden="true" focusable="false"><path d="M0 5h20M16 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>
+				<p class="enquiry__status" role="status"></p>
+			</form>
 
 			<dl class="contact__details">
+				<div class="contact__item">
+					<dt>Email</dt>
+					<dd><a href="mailto:hello@whiticker.com.au">hello@whiticker.com.au</a></dd>
+				</div>
 				<div class="contact__item">
 					<dt>Telephone</dt>
 					<dd><a href="tel:+61400000000">+61 400 000 000</a></dd>

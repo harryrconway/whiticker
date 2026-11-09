@@ -7,7 +7,8 @@
    04  HANDOFF
    05  REVEAL
    06  PROTECT
-   07  INIT
+   07  ENQUIRY
+   08  INIT
    ========================================================================== */
 
 (function () {
@@ -279,7 +280,44 @@
 
 
 	/* ======================================================================
-	   07  INIT
+	   07  ENQUIRY
+	   The site is static: there is no server to post the form to. On send
+	   it opens the visitor's own mail app with a ready written email to the
+	   form's mailto address, so nothing passes through a third party.
+	   Without JS the form's own mailto action still works, less tidily.
+	   ====================================================================== */
+
+	function enquiry() {
+		var form = document.querySelector('.enquiry');
+		if (!form) return;
+
+		var status = form.querySelector('.enquiry__status');
+		var to = form.getAttribute('action').replace(/^mailto:/, '');
+
+		// Fires only once the browser's own required/email checks pass
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			var name = form.elements.name.value.trim();
+			var email = form.elements.email.value.trim();
+			var message = form.elements.message.value.trim();
+
+			var subject = 'Enquiry from ' + name;
+			var body = message + '\n\n' + name + '\n' + email;
+
+			window.location.href = 'mailto:' + to +
+				'?subject=' + encodeURIComponent(subject) +
+				'&body=' + encodeURIComponent(body);
+
+			if (status) {
+				status.textContent = 'Your email app should now open with the message ready to send.';
+			}
+		});
+	}
+
+
+	/* ======================================================================
+	   08  INIT
 	   ====================================================================== */
 
 	function init() {
@@ -288,6 +326,7 @@
 		handoff();
 		reveal();
 		protect();
+		enquiry();
 	}
 
 	if (document.readyState === 'loading') {

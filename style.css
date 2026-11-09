@@ -642,58 +642,152 @@ main {
 
 
 /* ==========================================================================
-   10  CONTACT — full-viewport close, left-aligned to the same editorial
-   column as everything above it.
+   10  CONTACT — the one centred section: heading, a quiet three field form,
+   then the direct details in a single row. Fields are hairlines only, no
+   boxes, so the form reads as part of the page rather than a widget on it.
    ========================================================================== */
 
 .contact {
-	/* Deliberately not a full viewport. The section holds ~130px of content
-	   between a marker on top and a footer pinned to the bottom, so a taller
-	   box just distributes slack into the gaps. Full height and tight
-	   spacing are mutually exclusive here; this trades the former. */
-	min-height: 62vh;
-	min-height: 62svh;
 	display: grid;
-	/* marker up top · contact block centred in the slack · colophon pinned
-	   to the bottom. The 1fr row absorbs all leftover height, so there is no
-	   dead space under the footer. */
-	grid-template-rows: auto 1fr auto;
+	/* contact block · footer. The 1fr row takes any leftover height, so
+	   there is no dead space under the footer. */
+	grid-template-rows: 1fr auto;
+	padding-top: clamp(88px, 15vh, 168px);
 	padding-bottom: clamp(26px, 5vh, 56px);
 	scroll-margin-top: clamp(24px, 6vh, 64px);
 }
 
-/* The marker lives inside this section, so it drops the leading space that
-   free-standing chapter markers use to separate themselves from the row above */
-.chapter--flush { padding-top: clamp(40px, 7vh, 88px); }
-
 .contact__inner {
-	align-self: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 	padding: 0 var(--inset);
 }
 
-.contact__email {
-	display: inline-block;
-	font-size: clamp(1.3rem, 4vw, 3rem);
-	letter-spacing: 0.04em;
+.contact__title {
+	font-size: clamp(2rem, 3.1vw, 2.8rem);
+	font-weight: 400;
+	letter-spacing: 0.01em;
 	line-height: 1.1;
+	text-transform: lowercase;
+}
+
+.contact__lede {
+	margin-top: clamp(12px, 1.8vh, 18px);
+	font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+	letter-spacing: 0.02em;
+	line-height: 1.7;
+	text-wrap: balance;
+	color: var(--ink-quiet);
+}
+
+.enquiry {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(26px, 3.6vh, 34px);
+	width: 100%;
+	max-width: 760px;
+	margin-top: clamp(36px, 6vh, 56px);
+}
+
+.enquiry__pair {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: clamp(26px, 3.4vw, 48px);
+}
+
+.enquiry__field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: var(--credit-size);
+	letter-spacing: var(--track-wide);
+	text-transform: lowercase;
+	color: var(--ink-quiet);
+}
+
+.enquiry input,
+.enquiry textarea {
+	width: 100%;
+	padding: 10px 0 12px;
+	font: inherit;
+	font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+	letter-spacing: 0.02em;
+	text-transform: none;
+	text-align: center;
 	color: var(--ink);
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid rgba(236, 234, 227, 0.3);
+	border-radius: 0;
+	-webkit-appearance: none;
+	appearance: none;
+	resize: none;
+	field-sizing: content;    /* the message grows with what is typed */
+	transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+/* Focus brightens and thickens the hairline — the field's own indicator,
+   in place of the page-wide outline */
+.enquiry input:focus-visible,
+.enquiry textarea:focus-visible {
+	outline: none;
+	border-bottom-color: var(--ink);
+	box-shadow: 0 1px 0 var(--ink);
+}
+
+/* Browser autofill would otherwise paint the field pale yellow or blue */
+.enquiry input:-webkit-autofill {
+	-webkit-text-fill-color: var(--ink);
+	-webkit-box-shadow: 0 0 0 100px var(--bg) inset;
+	caret-color: var(--ink);
+}
+
+.enquiry__send {
+	align-self: center;
+	display: inline-flex;
+	align-items: center;
+	gap: 14px;
+	min-height: 48px;
+	margin-top: 4px;
+	padding: 0 4px;
+	font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+	letter-spacing: 0.04em;
+	text-transform: lowercase;
+	border-bottom: 1px solid var(--ink);
 	transition: opacity var(--dur) var(--ease);
 }
 
-.contact__email:hover { opacity: var(--hover-alpha); }
+.enquiry__send svg { transition: transform var(--dur) var(--ease); }
+
+@media (hover: hover) and (pointer: fine) {
+	.enquiry__send:hover { opacity: var(--hover-alpha); }
+	.enquiry__send:hover svg { transform: translateX(4px); }
+}
+
+/* Empty until a send; holds its line so the page doesn't jump */
+.enquiry__status {
+	min-height: 1.7em;
+	margin-top: -10px;
+	font-size: var(--credit-size);
+	letter-spacing: 0.02em;
+	line-height: 1.7;
+	color: var(--ink-quiet);
+}
 
 .contact__details {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: clamp(20px, 2.6vw, 48px);
-	max-width: 840px;
-	margin-top: clamp(44px, 8vh, 96px);
+	grid-template-columns: repeat(4, auto);
+	justify-content: center;
+	gap: 0 clamp(36px, 5vw, 72px);
+	margin-top: clamp(48px, 8vh, 80px);
 }
 
 .contact__item {
 	display: flex;
 	flex-direction: column;
-	gap: 0.7em;
+	gap: 0.6em;
 }
 
 .contact__item dt {
@@ -704,8 +798,8 @@ main {
 }
 
 .contact__item dd {
-	font-size: var(--chapter-size);
-	letter-spacing: 0.06em;
+	font-size: clamp(0.9rem, 1.05vw, 0.98rem);
+	letter-spacing: var(--track-wide);
 	line-height: 1.6;
 	color: var(--ink);
 }
@@ -967,10 +1061,18 @@ body.is-ready main { opacity: 1; }
 
 	.plate { flex: none; width: 100%; }
 
+	.enquiry__pair { grid-template-columns: 1fr; }
+
+	/* Four across won't fit a phone; two by two keeps the row's rhythm */
 	.contact__details {
-		grid-template-columns: 1fr;
-		gap: clamp(18px, 3vh, 28px);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 26px 16px;
+		width: 100%;
 	}
+
+	/* Email and phone take a row each (the address is too long for half a
+	   phone and would break mid domain); the two handles share the last */
+	.contact__item:nth-child(-n + 2) { grid-column: 1 / -1; }
 
 	/* "WHITICKER" is one unbreakable word — tighten the tracking so it holds
 	   a single line inside the gutters rather than running off the edges */
