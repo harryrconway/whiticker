@@ -847,41 +847,33 @@ main {
 	scroll-margin-top: clamp(24px, 6vh, 64px);
 }
 
+/* Every line of a project header — labels, values, Rex's credit — is set
+   alike: one size, one colour, one tracking. Only the title differs, and
+   only by being slightly bigger. */
 .project__head {
 	padding: clamp(40px, 7vh, 90px) var(--inset) clamp(18px, 2.6vh, 34px);
+	font-size: var(--credit-size);
+	letter-spacing: var(--track-wide);
+	line-height: 1.6;
+	color: var(--ink);
 }
 
 .project__title {
-	font-size: var(--chapter-size);
+	font-size: clamp(0.92rem, 1.05vw, 1.02rem);
 	font-weight: 400;
-	letter-spacing: var(--track-wide);
-	line-height: 1;
-	color: var(--ink);
+	line-height: 1.3;
 }
 
 .project__specs {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.6em clamp(20px, 2.4vw, 40px);
-	margin-top: clamp(12px, 1.6vh, 18px);
-	font-size: var(--credit-size);
-	letter-spacing: var(--track-wide);
-	line-height: 1.5;
+	gap: 0.4em clamp(20px, 2.4vw, 40px);
+	margin-top: clamp(10px, 1.4vh, 14px);
 }
 
 .project__spec { display: flex; gap: 0.9em; }
-.project__spec dt { color: var(--ink-quiet); }
-.project__spec dd { color: var(--ink-soft); }
 
-/* Rex's short per project credit — sentence case so it reads as a line,
-   not another label */
-.project__credit {
-	margin-top: clamp(10px, 1.4vh, 16px);
-	font-size: clamp(0.72rem, 0.85vw, 0.8rem);
-	letter-spacing: 0.02em;
-	line-height: 1.7;
-	color: var(--ink-quiet);
-}
+.project__credit { margin-top: clamp(6px, 1vh, 10px); }
 
 .project__rows {
 	display: flex;
