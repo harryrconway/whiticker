@@ -195,7 +195,7 @@
 		});
 
 		// Click off — the photograph or the panel's empty space. Never the
-		// details themselves, so the ABN or an address can be selected.
+		// details themselves, so an address or number can be selected.
 		el.overlay.addEventListener('click', function (e) {
 			var t = e.target;
 			if (t === el.overlay ||
